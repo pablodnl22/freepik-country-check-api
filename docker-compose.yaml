@@ -1,0 +1,28 @@
+version: '3.6'
+services:
+    php:
+        container_name: fpm_country_check
+        build:
+            context: docker/fpm
+            dockerfile: Dockerfile
+        volumes:
+            - .:/var/www/html/
+        networks:
+            - network_country_check
+    nginx:
+        container_name: nginx_country_check
+        build:
+            context: docker/nginx
+            dockerfile: Dockerfile
+        ports:
+            - "8023:80"
+        links:
+            - php:fpm_country_check
+        networks:
+            - network_country_check
+
+networks:
+    network_country_check:
+        driver: bridge
+
+
