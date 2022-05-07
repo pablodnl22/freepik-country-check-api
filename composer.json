@@ -32,6 +32,9 @@
     "sort-packages": true
   },
   "autoload": {
+    "files": [
+      "src/CountryCheck/Shared/Domain/Util/Function/chain.php"
+    ],
     "psr-4": {
       "CountryCheckApi\\": "src/"
     }
