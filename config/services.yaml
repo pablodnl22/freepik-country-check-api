@@ -43,3 +43,7 @@ services:
             - '@CountryCheckApi\CountryCheck\Country\Domain\Service\CountryRegionIsFromEuropeSpecification'
             - '@CountryCheckApi\CountryCheck\Country\Domain\Service\CountryPopulationIsBigEnoughSpecification'
             - '@CountryCheckApi\CountryCheck\Country\Domain\Service\CountryPopulationIsBiggerThanNorwaySpecification'
+
+    CountryCheckApi\CountryCheck\Shared\Infrastructure\Symfony\ExceptionListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.exception }

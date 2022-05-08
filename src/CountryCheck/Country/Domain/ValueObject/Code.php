@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace CountryCheckApi\CountryCheck\Country\Domain\ValueObject;
 
+use CountryCheckApi\CountryCheck\Shared\Domain\Exception\DomainException;
+use CountryCheckApi\CountryCheck\Shared\Domain\Exception\ExceptionCode;
 use CountryCheckApi\CountryCheck\Shared\Domain\ValueObject\StringValueObject;
 
 final class Code extends StringValueObject
@@ -12,7 +14,11 @@ final class Code extends StringValueObject
     {
         $length = strlen($value);
         if ($length < 2 || $length > 3) {
-            throw new \DomainException(sprintf('Invalid country code %s', $value));
+            throw new DomainException(
+                'Invalid country code',
+                ExceptionCode::BadBusinessLogic,
+                ['code' => $value]
+            );
         }
 
         parent::__construct(strtoupper($value));

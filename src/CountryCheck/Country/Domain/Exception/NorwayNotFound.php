@@ -4,10 +4,13 @@ declare(strict_types=1);
 
 namespace CountryCheckApi\CountryCheck\Country\Domain\Exception;
 
-final class NorwayNotFound extends \DomainException
+use CountryCheckApi\CountryCheck\Shared\Domain\Exception\DomainException;
+use CountryCheckApi\CountryCheck\Shared\Domain\Exception\ExceptionCode;
+
+final class NorwayNotFound extends DomainException
 {
     public function __construct()
     {
-        parent::__construct('Norway not found');
+        parent::__construct('Norway country not found', ExceptionCode::NotFound);
     }
 }
