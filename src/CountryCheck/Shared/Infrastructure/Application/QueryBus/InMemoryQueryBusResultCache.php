@@ -15,16 +15,21 @@ final class InMemoryQueryBusResultCache implements QueryBusResultCache
 
     public function has(Query $query): bool
     {
-        return array_key_exists($query::class, $this->cache);
+        return array_key_exists($this->generateKeyFrom($query), $this->cache);
     }
 
     public function get(Query $query): Result
     {
-        return $this->cache[$query::class];
+        return $this->cache[$this->generateKeyFrom($query)];
     }
 
     public function save(Query $query, Result $result): void
     {
-        $this->cache[$query::class] = $result;
+        $this->cache[$this->generateKeyFrom($query)] = $result;
+    }
+
+    private function generateKeyFrom(Query $query): string
+    {
+        return hash('md5', (string)json_encode($query));
     }
 }
