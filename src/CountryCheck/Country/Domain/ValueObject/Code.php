@@ -10,6 +10,11 @@ final class Code extends StringValueObject
 {
     protected function __construct(string $value)
     {
+        $length = strlen($value);
+        if ($length < 2 || $length > 3) {
+            throw new \DomainException(sprintf('Invalid country code %s', $value));
+        }
+
         parent::__construct(strtoupper($value));
     }
 }

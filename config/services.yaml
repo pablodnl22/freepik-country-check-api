@@ -36,5 +36,10 @@ services:
         arguments:
             - '@CountryCheckApi\CountryCheck\Shared\Infrastructure\Application\QueryBus\HandlerExecutorMiddleware'
 
-    # add more service definitions when explicit configuration is needed
-    # please note that last definitions always *replace* previous ones
+    CountryCheckApi\CountryCheck\Country\Application\CheckCountry\CheckCountryQueryHandler:
+        arguments:
+            - '@CountryCheckApi\CountryCheck\Country\Domain\Model\CountryRepository'
+            - '@CountryCheckApi\CountryCheck\Country\Domain\Service\CountryCodeFirstLetterIsVocalSpecification'
+            - '@CountryCheckApi\CountryCheck\Country\Domain\Service\CountryRegionIsFromEuropeSpecification'
+            - '@CountryCheckApi\CountryCheck\Country\Domain\Service\CountryPopulationIsBigEnoughSpecification'
+            - '@CountryCheckApi\CountryCheck\Country\Domain\Service\CountryPopulationIsBiggerThanNorwaySpecification'
