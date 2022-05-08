@@ -24,7 +24,7 @@ final class QueryBusTest extends TestCase
 
     public function testGivenQueryWhenQueryBusHasMiddlewaresThenDispatchQueryInMiddlewares(): void
     {
-        $dummyMiddleware = static fn (Query $query, callable $next) => $next($query);
+        $dummyMiddleware = new DummyMiddleware();
 
         $resultGeneratorMiddleware = new StubMiddlewareForResultGeneration();
 

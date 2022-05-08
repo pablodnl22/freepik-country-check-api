@@ -19,6 +19,22 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+            - '../src/CountryCheck/Shared/Domain/Util/Function/*'
+
+    controllers:
+        namespace: CountryCheckApi\
+        resource: '../src/*/*/Infrastructure/Adapter/RestAPI/*'
+        tags: [ 'controller.service_arguments' ]
+
+    CountryCheckApi\CountryCheck\Shared\Infrastructure\Application\QueryBus\HandlerExecutorMiddleware:
+        arguments:
+            - '@service_container'
+            - '@CountryCheckApi\CountryCheck\Shared\Application\QueryBus\DeclaredQueryCollection'
+
+    CountryCheckApi\CountryCheck\Shared\Application\QueryBus\QueryBus:
+        class: CountryCheckApi\CountryCheck\Shared\Infrastructure\Application\QueryBus\QueryBus
+        arguments:
+            - '@CountryCheckApi\CountryCheck\Shared\Infrastructure\Application\QueryBus\HandlerExecutorMiddleware'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

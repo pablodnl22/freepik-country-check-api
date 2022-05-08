@@ -4,16 +4,17 @@ declare(strict_types=1);
 
 namespace CountryCheckApi\CountryCheck\Shared\Infrastructure\Application\QueryBus;
 
+use CountryCheckApi\CountryCheck\Shared\Application\QueryBus\Middleware;
 use CountryCheckApi\CountryCheck\Shared\Application\QueryBus\Query;
 use CountryCheckApi\CountryCheck\Shared\Application\QueryBus\Result;
 use function CountryCheckApi\CountryCheck\Shared\Domain\Util\Function\chain;
 
 final class QueryBus implements \CountryCheckApi\CountryCheck\Shared\Application\QueryBus\QueryBus
 {
-    /** @var callable[] */
+    /** @var Middleware[] */
     private array $middlewares;
 
-    public function __construct(callable ...$middlewares)
+    public function __construct(Middleware ...$middlewares)
     {
         $this->middlewares = $middlewares;
     }
