@@ -16,4 +16,4 @@ function chain(callable ...$handlers): callable
     return $carry;
 }
 
-const chain = 'CountryCheckApi\CountryCheck\Shared\Domain\Util\Function';
+const chain = 'CountryCheckApi\CountryCheck\Shared\Domain\Util\Function\chain';

@@ -8,10 +8,11 @@ use CountryCheckApi\CountryCheck\Shared\Application\QueryBus\Middleware;
 use CountryCheckApi\CountryCheck\Shared\Application\QueryBus\Query;
 use CountryCheckApi\CountryCheck\Shared\Application\QueryBus\Result;
 
-final class StubMiddlewareForResultGeneration implements Middleware
+final class DummyMiddleware implements Middleware
 {
+
     public function __invoke(Query $query, callable $next): Result
     {
-        return new DummyResult();
+        return $next($query);
     }
 }
